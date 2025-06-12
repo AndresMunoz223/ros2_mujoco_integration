@@ -1,0 +1,20 @@
+running develop
+running egg_info
+creating amr_sim_2511_charlie.egg-info
+writing amr_sim_2511_charlie.egg-info/PKG-INFO
+writing dependency_links to amr_sim_2511_charlie.egg-info/dependency_links.txt
+writing requirements to amr_sim_2511_charlie.egg-info/requires.txt
+writing top-level names to amr_sim_2511_charlie.egg-info/top_level.txt
+writing manifest file 'amr_sim_2511_charlie.egg-info/SOURCES.txt'
+reading manifest file 'amr_sim_2511_charlie.egg-info/SOURCES.txt'
+writing manifest file 'amr_sim_2511_charlie.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/eia/ros2_mujoco_integration/install/amr_sim_2511_charlie/lib/python3.10/site-packages/amr-sim-2511-charlie.egg-link (link to .)
+
+Installed /home/eia/ros2_mujoco_integration/build/amr_sim_2511_charlie
+running symlink_data
+creating /home/eia/ros2_mujoco_integration/install/amr_sim_2511_charlie/share/ament_index
+creating /home/eia/ros2_mujoco_integration/install/amr_sim_2511_charlie/share/ament_index/resource_index
+creating /home/eia/ros2_mujoco_integration/install/amr_sim_2511_charlie/share/ament_index/resource_index/packages
+symbolically linking /home/eia/ros2_mujoco_integration/build/amr_sim_2511_charlie/resource/amr_sim_2511_charlie -> /home/eia/ros2_mujoco_integration/install/amr_sim_2511_charlie/share/ament_index/resource_index/packages
+symbolically linking /home/eia/ros2_mujoco_integration/build/amr_sim_2511_charlie/package.xml -> /home/eia/ros2_mujoco_integration/install/amr_sim_2511_charlie/share/amr_sim_2511_charlie
