@@ -1,0 +1,2 @@
+[console_scripts]
+mujoco_car_simulation_init = amr_sim_2511_charlie.car_sim_init:main

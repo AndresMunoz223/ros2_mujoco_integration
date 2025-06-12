@@ -1,0 +1,1 @@
+/home/eia/ros2_mujoco_integration/src/amr_sim_2511_charlie/launch/mujoco_sim_init.launch.py

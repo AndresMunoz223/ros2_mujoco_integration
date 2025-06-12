@@ -1,0 +1,68 @@
+<mujoco>
+  <asset> 
+    <texture name="grid" type="2d" builtin="checker" rgb1=".1 .2 .3"
+     rgb2=".2 .3 .4" width="300" height="300" mark="none"/>
+    <material name="grid" texture="grid" texrepeat="1 1"
+     texuniform="true" reflectance=".1"/>
+  </asset>
+
+  <worldbody>
+
+    <light name="light" pos="0 0 1"/>
+    <geom name="floor" type="plane" pos="0 0 -0.1" size="30 30 .1" material="grid" friction=".001"/>
+    <camera name="fixed" pos="0 -6.0 6." xyaxes="1 0 0 0 1 2"/>
+
+    <geom name="wall1" type="box" size="4. 0.01 0.2" pos="0 6. 0.1" euler = "0 0 45" />  
+    <geom name="wall2" type="box" size="4. 0.01 0.2" pos="0 -6. 0.1" euler = "0 0 45"/>
+    <geom name="wall3" type="box" size="0.01 4. 0.2" pos="6. 0 0.1" euler = "0 0 45"/>
+    <geom name="wall4" type="box" size="0.01 4. 0.2" pos="-6. 0 0.1" euler = "0 0 45"/>
+    
+
+
+    <body name="chassis_link" pos="0 0 0">
+      <joint name="free" type="free"/>
+      <geom name="chassis" type="box" size=".2 .1 .05" rgba="1 0 0 1" />
+      <geom name="lidar" type="box" size=".02 .02 .02" pos=".0 .0 .1" rgba="0 0 1 1"/>
+      <site name="IMU"/>
+    
+      <camera name="top_view" pos="0 0 .2" mode="fixed" euler = "90 -90 0"/>
+
+      <body name="right_rear_wheel" pos="-0.1 -.12 -0.02" euler = "90 0 0">
+        <joint name="rrw_j" type="hinge" damping="0.6" axis="0 0 -1"/>
+        <geom name="right_rear_wheel_solid" type="cylinder" size=".05 .005" rgba="0 1 0 1"/>
+      </body>
+
+      <body name="left_rear_wheel" pos="-0.1 .12 -0.02" euler = "90 0 0">
+        <joint name="lrw_j" type="hinge" damping="0.6" axis="0 0 -1" />
+        <geom name="left_rear_wheel_solid" type="cylinder" size=".05 .005" rgba="0 1 0 1"/>
+      </body>
+
+      <body name="caster_wheel" pos="0.1 0 -0.05">
+        <geom name="caster_wheel_solid" type="sphere" size="0.0225" rgba="0 1 0 1" friction=".00001"/>
+      </body>
+            <!-- 使用replicate创建36个rangefinder -->
+      <replicate count="360" euler="0 0 1">
+        <site name="rf" pos="0.02 0 0.1" zaxis="1 0 0"/>
+      </replicate>
+
+    </body> 
+
+  </worldbody>
+
+    <sensor>
+        <rangefinder site="rf"/>
+    </sensor>
+
+  <actuator>
+    <motor name="lw_m" joint="lrw_j" gear="3"/>
+  </actuator>
+
+  <actuator>
+    <motor name="rw_m" joint="rrw_j" gear="3"/>
+  </actuator>
+
+  <sensor>
+    <accelerometer name="accelerometer" site="IMU"/>
+  </sensor>
+
+</mujoco>

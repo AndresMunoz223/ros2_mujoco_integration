@@ -2,10 +2,16 @@ package.xml
 setup.cfg
 setup.py
 amr_sim_2511_charlie/__init__.py
+amr_sim_2511_charlie/car_sim_init.py
 amr_sim_2511_charlie.egg-info/PKG-INFO
 amr_sim_2511_charlie.egg-info/SOURCES.txt
 amr_sim_2511_charlie.egg-info/dependency_links.txt
+amr_sim_2511_charlie.egg-info/entry_points.txt
 amr_sim_2511_charlie.egg-info/requires.txt
 amr_sim_2511_charlie.egg-info/top_level.txt
 amr_sim_2511_charlie.egg-info/zip-safe
+config/joystick.yaml
+config/mux.yaml
+descriptions/robot_differential.xml
+launch/mujoco_sim_init.launch.py
 resource/amr_sim_2511_charlie

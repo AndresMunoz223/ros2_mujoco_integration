@@ -1,0 +1,18 @@
+running develop
+running egg_info
+writing amr_sim_2511_charlie.egg-info/PKG-INFO
+writing dependency_links to amr_sim_2511_charlie.egg-info/dependency_links.txt
+writing entry points to amr_sim_2511_charlie.egg-info/entry_points.txt
+writing requirements to amr_sim_2511_charlie.egg-info/requires.txt
+writing top-level names to amr_sim_2511_charlie.egg-info/top_level.txt
+reading manifest file 'amr_sim_2511_charlie.egg-info/SOURCES.txt'
+writing manifest file 'amr_sim_2511_charlie.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/eia/ros2_mujoco_integration/install/amr_sim_2511_charlie/lib/python3.10/site-packages/amr-sim-2511-charlie.egg-link (link to .)
+Installing mujoco_car_simulation_init script to /home/eia/ros2_mujoco_integration/install/amr_sim_2511_charlie/lib/amr_sim_2511_charlie
+
+Installed /home/eia/ros2_mujoco_integration/build/amr_sim_2511_charlie
+running symlink_data
+creating /home/eia/ros2_mujoco_integration/install/amr_sim_2511_charlie/share/amr_sim_2511_charlie/config
+symbolically linking /home/eia/ros2_mujoco_integration/build/amr_sim_2511_charlie/config/joystick.yaml -> /home/eia/ros2_mujoco_integration/install/amr_sim_2511_charlie/share/amr_sim_2511_charlie/config
+symbolically linking /home/eia/ros2_mujoco_integration/build/amr_sim_2511_charlie/config/mux.yaml -> /home/eia/ros2_mujoco_integration/install/amr_sim_2511_charlie/share/amr_sim_2511_charlie/config
