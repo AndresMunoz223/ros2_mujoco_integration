@@ -17,7 +17,6 @@ def generate_launch_description():
     twist_mux_params = os.path.join(get_package_share_directory(package_name),'config','mux.yaml')
 
 
-
     joy_node = Node(package='joy', 
                     executable='joy_node',
                     parameters=[joy_params],
@@ -34,8 +33,7 @@ def generate_launch_description():
     twist_mux_node = Node(package='twist_mux', 
                     executable='twist_mux',
                     parameters=[twist_mux_params],
-                    # parameters=[twist_mux_params,{'use_sim_time': True}],
-                    remappings=[('/cmd_vel_out','/cmd_vel_mux_output')],  # Remap the output topic
+                    remappings=[('/cmd_vel_out','/car/cmd_vel_mux_output')],  # Remap the output topic
     )
 
     mujoco_simulation = Node(package='amr_sim_2511_charlie', 

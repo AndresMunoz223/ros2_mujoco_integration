@@ -1,0 +1,4 @@
+[console_scripts]
+gap_follower_control = amr_reactive_control.gap_follower.gap_follower_control:main
+wall_follower_control = amr_reactive_control.wall_follower.wall_follower_control:main
+wall_follower_parameters = amr_reactive_control.wall_follower.wall_follower_params:main

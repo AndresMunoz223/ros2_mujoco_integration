@@ -1,0 +1,31 @@
+[0.838s] Invoking command in '/home/eia/ros2_mujoco_integration/build/amr_sim_2511_charlie': PYTHONPATH=/home/eia/ros2_mujoco_integration/build/amr_sim_2511_charlie/prefix_override:/home/eia/.local/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/eia/ros2_mujoco_integration/install/amr_sim_2511_charlie/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/eia/ros2_mujoco_integration/build/amr_sim_2511_charlie/build --no-deps symlink_data
+[1.110s] running develop
+[1.292s] running egg_info
+[1.292s] creating amr_sim_2511_charlie.egg-info
+[1.306s] writing amr_sim_2511_charlie.egg-info/PKG-INFO
+[1.306s] writing dependency_links to amr_sim_2511_charlie.egg-info/dependency_links.txt
+[1.306s] writing entry points to amr_sim_2511_charlie.egg-info/entry_points.txt
+[1.306s] writing requirements to amr_sim_2511_charlie.egg-info/requires.txt
+[1.306s] writing top-level names to amr_sim_2511_charlie.egg-info/top_level.txt
+[1.306s] writing manifest file 'amr_sim_2511_charlie.egg-info/SOURCES.txt'
+[1.335s] reading manifest file 'amr_sim_2511_charlie.egg-info/SOURCES.txt'
+[1.335s] writing manifest file 'amr_sim_2511_charlie.egg-info/SOURCES.txt'
+[1.351s] running build_ext
+[1.351s] Creating /home/eia/ros2_mujoco_integration/install/amr_sim_2511_charlie/lib/python3.10/site-packages/amr-sim-2511-charlie.egg-link (link to .)
+[1.352s] Installing mujoco_car_simulation_init script to /home/eia/ros2_mujoco_integration/install/amr_sim_2511_charlie/lib/amr_sim_2511_charlie
+[1.352s] 
+[1.352s] Installed /home/eia/ros2_mujoco_integration/build/amr_sim_2511_charlie
+[1.352s] running symlink_data
+[1.352s] creating /home/eia/ros2_mujoco_integration/install/amr_sim_2511_charlie/share/ament_index
+[1.352s] creating /home/eia/ros2_mujoco_integration/install/amr_sim_2511_charlie/share/ament_index/resource_index
+[1.352s] creating /home/eia/ros2_mujoco_integration/install/amr_sim_2511_charlie/share/ament_index/resource_index/packages
+[1.352s] symbolically linking /home/eia/ros2_mujoco_integration/build/amr_sim_2511_charlie/resource/amr_sim_2511_charlie -> /home/eia/ros2_mujoco_integration/install/amr_sim_2511_charlie/share/ament_index/resource_index/packages
+[1.352s] symbolically linking /home/eia/ros2_mujoco_integration/build/amr_sim_2511_charlie/package.xml -> /home/eia/ros2_mujoco_integration/install/amr_sim_2511_charlie/share/amr_sim_2511_charlie
+[1.352s] creating /home/eia/ros2_mujoco_integration/install/amr_sim_2511_charlie/share/amr_sim_2511_charlie/launch
+[1.352s] symbolically linking /home/eia/ros2_mujoco_integration/build/amr_sim_2511_charlie/launch/mujoco_sim_init.launch.py -> /home/eia/ros2_mujoco_integration/install/amr_sim_2511_charlie/share/amr_sim_2511_charlie/launch
+[1.353s] creating /home/eia/ros2_mujoco_integration/install/amr_sim_2511_charlie/share/amr_sim_2511_charlie/descriptions
+[1.353s] symbolically linking /home/eia/ros2_mujoco_integration/build/amr_sim_2511_charlie/descriptions/robot_differential.xml -> /home/eia/ros2_mujoco_integration/install/amr_sim_2511_charlie/share/amr_sim_2511_charlie/descriptions
+[1.353s] creating /home/eia/ros2_mujoco_integration/install/amr_sim_2511_charlie/share/amr_sim_2511_charlie/config
+[1.353s] symbolically linking /home/eia/ros2_mujoco_integration/build/amr_sim_2511_charlie/config/joystick.yaml -> /home/eia/ros2_mujoco_integration/install/amr_sim_2511_charlie/share/amr_sim_2511_charlie/config
+[1.353s] symbolically linking /home/eia/ros2_mujoco_integration/build/amr_sim_2511_charlie/config/mux.yaml -> /home/eia/ros2_mujoco_integration/install/amr_sim_2511_charlie/share/amr_sim_2511_charlie/config
+[1.376s] Invoked command in '/home/eia/ros2_mujoco_integration/build/amr_sim_2511_charlie' returned '0': PYTHONPATH=/home/eia/ros2_mujoco_integration/build/amr_sim_2511_charlie/prefix_override:/home/eia/.local/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/eia/ros2_mujoco_integration/install/amr_sim_2511_charlie/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/eia/ros2_mujoco_integration/build/amr_sim_2511_charlie/build --no-deps symlink_data

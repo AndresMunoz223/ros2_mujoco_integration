@@ -13,6 +13,7 @@ import time
 import threading
 import numpy as np
 from math import cos, sin
+from icecream import ic
 
 
 import os
@@ -27,6 +28,7 @@ from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
 from sensor_msgs.msg import LaserScan
+from sensor_msgs.msg import Imu
 
 from terminaltexteffects.effects.effect_beams import Beams
 
@@ -42,7 +44,7 @@ np.set_printoptions(precision=3, suppress=True, linewidth=100)
 
 #! ------------------------Descripción--------------------------
 
-package_name = 'mujoco_sim'
+package_name = 'amr_sim_2511_charlie'
 
 MJCF = os.path.join(
                 get_package_share_directory(package_name),'descriptions','robot_differential.xml')
@@ -52,17 +54,6 @@ MJCF = os.path.join(
 
 
 def euler_to_quaternion(roll, pitch, yaw):
-    """
-    Converts Euler angles (roll, pitch, yaw) to a quaternion (x, y, z, w).
-
-    Args:
-        roll (float): Rotation around the x-axis (in radians).
-        pitch (float): Rotation around the y-axis (in radians).
-        yaw (float): Rotation around the z-axis (in radians).
-
-    Returns:
-        tuple: A tuple representing the quaternion (x, y, z, w).
-    """
 
     cy = cos(yaw * 0.5)
     sy = sin(yaw * 0.5)
@@ -81,24 +72,27 @@ def euler_to_quaternion(roll, pitch, yaw):
 
 class MujocoSimulator(Node):
     def __init__(self, Description):
-        super().__init__('Simulator_pendulum')
+        super().__init__('car_simulator')
 
         #* User interaction side
-        self.twist_sub = self.create_subscription(Twist,"/cmd_vel_mux_output", self.__twist_callback, 10)
+        self.twist_sub = self.create_subscription(Twist,"/car/cmd_vel_mux_output", self.__twist_callback, 10)
         self.u_input = 0.
         self.w_input = 0.
 
         #* Odometry publishing side
-        self.laser_pub = self.create_publisher(LaserScan, "/scan", 10)
-        self.odom_pub = self.create_publisher(Odometry, "/odom", 10)
+        self.laser_pub = self.create_publisher(LaserScan, "/car/scan", 10)
+        self.odom_pub = self.create_publisher(Odometry, "/car/odom", 10)
+        self.imu_pub = self.create_publisher(Imu, "/car/imu", 10)
 
         self.odom_timer = self.create_timer(0.05, self.__publish_odom_transform)
+        self.imu_timer = self.create_timer(0.05, self.__publish_imu_transform)
         self.laser_timer = self.create_timer(0.1, self.__publish_laser_scan)
 
         #* Transform publishing side 
         self.tf_broadcaster = TransformBroadcaster(self)
-        self.parent_frame = 'odom'
-        self.child_frame = 'base_link'
+        self.odom_frame = 'odom'
+        self.base_link_frame = 'base_link'
+        self.lidar_frame = 'laser'
 
         self.x_coordinate_reconstruct = 0
         self.y_coordinate_reconstruct = 0
@@ -112,80 +106,116 @@ class MujocoSimulator(Node):
         self.video_fps = 60
         self.sim_time = 30
         self.simulation_object.opt.timestep = 0.005
-        self.lidar_measurements = []
+        self.lidar_measurements = np.zeros(360)
 
         #* Camera and simulation objects
         self.car_camera_name = "top_view"
-        camera_id = self.simulation_object.camera(self.car_camera_name).id
+        self.camera_id = self.simulation_object.camera(self.car_camera_name).id
         self.car_camera = mujoco.MjvCamera()
         self.car_camera.type = mujoco.mjtCamera.mjCAMERA_FIXED
-        self.car_camera.fixedcamid = camera_id
+        self.car_camera.fixedcamid = self.camera_id
 
+        self.imu_name = "accelerometer"  # Replace with your IMU sensor name
+        self.imu_id = self.simulation_object.sensor(self.imu_name).id
+        self.imu_adr = self.simulation_object.sensor_adr[self.imu_id]
+        self.imu_len = self.simulation_object.sensor_dim[self.imu_id]
 
         self.rrw_angle_prev = 0
         self.lrw_angle_prev = 0
+
+
+    def __publish_imu_transform(self):
+
+        msg = Imu()
+        msg.header.stamp = self.get_clock().now().to_msg()
+        msg.header.frame_id = self.base_link_frame
+
+        msg.orientation.x = 0.0
+        msg.orientation.y = 0.0
+        msg.orientation.z = 0.0
+        msg.orientation.w = 1.0
+
+        msg.angular_velocity.x = 0.
+        msg.angular_velocity.y = 0.
+        msg.angular_velocity.z = 0.
+
+        msg.linear_acceleration.x = self.simulation_data.sensor(self.imu_name).data[0]
+        msg.linear_acceleration.y = self.simulation_data.sensor(self.imu_name).data[1]
+        msg.linear_acceleration.z = self.simulation_data.sensor(self.imu_name).data[2]
+
+        self.imu_pub.publish(msg)
 
 
     def __publish_laser_scan(self):
 
         msg = LaserScan()
         msg.header.stamp = self.get_clock().now().to_msg()
+        msg.header.frame_id = self.lidar_frame
+        msg.angle_min = -np.pi
+        msg.angle_max = np.pi
 
-        pass
+        msg.angle_increment = 2 * np.pi / 360.
+
+        # msg.scan_time = 0.1
+        msg.range_min = 0.0
+        msg.range_max = 10.0
+        # ic(self.lidar_measurements)
+        self.lidar_measurements[self.lidar_measurements < 0.1] = np.inf
+        msg.ranges = (self.lidar_measurements.tolist())
+        msg.intensities = (np.arange(len(msg.ranges)) / len(msg.ranges)).tolist()
+        self.laser_pub.publish(msg)
+
 
     def __publish_odom_transform(self):
 
-        # Create the transform message
+        #! Create the odom transform
         t = TransformStamped()
         t.header.stamp = self.get_clock().now().to_msg()
-        t.header.frame_id = self.parent_frame
-        t.child_frame_id = self.child_frame
+        t.header.frame_id = self.odom_frame
+        t.child_frame_id = self.base_link_frame
 
         # Robot's position in the odom frame
-        t.transform.translation.x = self.x
-        t.transform.translation.y = self.y
+        t.transform.translation.x = float(self.x_coordinate_reconstruct)
+        t.transform.translation.y = float(self.y_coordinate_reconstruct)
         t.transform.translation.z = 0.0
 
         roll = 0.0
         pitch = 0.0
-        yaw = self.theta
+        yaw = self.theta_angle_reconstruct
         qx, qy, qz, qw = euler_to_quaternion(roll, pitch, yaw)
         t.transform.rotation.x = qx
         t.transform.rotation.y = qy
         t.transform.rotation.z = qz
         t.transform.rotation.w = qw
 
+        self.tf_broadcaster.sendTransform(t)
 
         #! Create the lidar transform
-        self.tf_broadcaster.send_transform(t)
-        self.get_logger().info(f'Published transform from {self.parent_frame} to {self.child_frame}')
-
-                t.header.frame_id = self.parent_frame
-        t.child_frame_id = self.child_frame
+        t.header.frame_id = self.base_link_frame
+        t.child_frame_id = self.lidar_frame
 
         # Robot's position in the odom frame
-        t.transform.translation.x = self.x
-        t.transform.translation.y = self.y
-        t.transform.translation.z = 0.0
+        t.transform.translation.x = 0.
+        t.transform.translation.y = 0.
+        t.transform.translation.z = 0.1
 
         roll = 0.0
         pitch = 0.0
-        yaw = self.theta
+        yaw = 0.0
         qx, qy, qz, qw = euler_to_quaternion(roll, pitch, yaw)
         t.transform.rotation.x = qx
         t.transform.rotation.y = qy
         t.transform.rotation.z = qz
         t.transform.rotation.w = qw
 
-
         # Publish the transform
-        self.tf_broadcaster.send_transform(t)
-        self.get_logger().info(f'Published transform from {self.parent_frame} to {self.child_frame}')
+        self.tf_broadcaster.sendTransform(t)
+
 
 
     def __twist_callback(self, data):
-        self.u_input = data.linear.x*4.
         self.w_input = data.angular.z*4.
+        self.u_input = data.linear.x*4.
 
     def get_odom(self):
 
@@ -205,12 +235,6 @@ class MujocoSimulator(Node):
     def start_sim(self):
         #* Helper functs
 
-        # effect = Beams("""Iniciando simulador....                        
-        # """)
-        # with effect.terminal_output() as terminal:
-        #     for frame in effect:
-        #         terminal.print(frame)
-
         n_frames = self.sim_time*self.video_fps
         frames = []
         times = []
@@ -227,6 +251,7 @@ class MujocoSimulator(Node):
             for i in range(n_frames):
                 
                 while self.simulation_data.time < i/self.video_fps:
+                    
 
                     self.simulation_data.ctrl[0] = self.u_input - self.w_input
                     self.simulation_data.ctrl[1] = self.u_input + self.w_input
@@ -258,6 +283,9 @@ class MujocoSimulator(Node):
                 
                 cv2.imshow("Global",img_frame)
                 cv2.imshow("Car_perspective", car_frame)
+                cv2.moveWindow("Global", 0, 0)
+                cv2.moveWindow("Car_perspective", int(480*1.15), 0)
+
                 cv2.waitKey(25) & 0xFF == ord('q') # Exit if 'q' is pressed
                 # frames.append(frame)
 

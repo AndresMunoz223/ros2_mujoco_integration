@@ -1,0 +1,31 @@
+[0.833s] Invoking command in '/home/eia/ros2_mujoco_integration/build/amr_reactive_control': PYTHONPATH=/home/eia/ros2_mujoco_integration/build/amr_reactive_control/prefix_override:/home/eia/.local/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/eia/ros2_mujoco_integration/install/amr_reactive_control/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/eia/ros2_mujoco_integration/build/amr_reactive_control/build --no-deps symlink_data
+[1.106s] running develop
+[1.288s] running egg_info
+[1.288s] creating amr_reactive_control.egg-info
+[1.302s] writing amr_reactive_control.egg-info/PKG-INFO
+[1.302s] writing dependency_links to amr_reactive_control.egg-info/dependency_links.txt
+[1.302s] writing entry points to amr_reactive_control.egg-info/entry_points.txt
+[1.303s] writing requirements to amr_reactive_control.egg-info/requires.txt
+[1.303s] writing top-level names to amr_reactive_control.egg-info/top_level.txt
+[1.303s] writing manifest file 'amr_reactive_control.egg-info/SOURCES.txt'
+[1.332s] reading manifest file 'amr_reactive_control.egg-info/SOURCES.txt'
+[1.332s] writing manifest file 'amr_reactive_control.egg-info/SOURCES.txt'
+[1.347s] running build_ext
+[1.348s] Creating /home/eia/ros2_mujoco_integration/install/amr_reactive_control/lib/python3.10/site-packages/amr-reactive-control.egg-link (link to .)
+[1.348s] Installing gap_follower_control script to /home/eia/ros2_mujoco_integration/install/amr_reactive_control/lib/amr_reactive_control
+[1.348s] Installing wall_follower_control script to /home/eia/ros2_mujoco_integration/install/amr_reactive_control/lib/amr_reactive_control
+[1.348s] Installing wall_follower_parameters script to /home/eia/ros2_mujoco_integration/install/amr_reactive_control/lib/amr_reactive_control
+[1.349s] 
+[1.349s] Installed /home/eia/ros2_mujoco_integration/build/amr_reactive_control
+[1.349s] running symlink_data
+[1.349s] creating /home/eia/ros2_mujoco_integration/install/amr_reactive_control/share/ament_index
+[1.349s] creating /home/eia/ros2_mujoco_integration/install/amr_reactive_control/share/ament_index/resource_index
+[1.349s] creating /home/eia/ros2_mujoco_integration/install/amr_reactive_control/share/ament_index/resource_index/packages
+[1.349s] symbolically linking /home/eia/ros2_mujoco_integration/build/amr_reactive_control/resource/amr_reactive_control -> /home/eia/ros2_mujoco_integration/install/amr_reactive_control/share/ament_index/resource_index/packages
+[1.349s] symbolically linking /home/eia/ros2_mujoco_integration/build/amr_reactive_control/package.xml -> /home/eia/ros2_mujoco_integration/install/amr_reactive_control/share/amr_reactive_control
+[1.349s] creating /home/eia/ros2_mujoco_integration/install/amr_reactive_control/share/amr_reactive_control/launch
+[1.349s] symbolically linking /home/eia/ros2_mujoco_integration/build/amr_reactive_control/launch/amr_wall_follower_control.launch.py -> /home/eia/ros2_mujoco_integration/install/amr_reactive_control/share/amr_reactive_control/launch
+[1.349s] symbolically linking /home/eia/ros2_mujoco_integration/build/amr_reactive_control/launch/amr_gap_follower_control.launch.py -> /home/eia/ros2_mujoco_integration/install/amr_reactive_control/share/amr_reactive_control/launch
+[1.349s] creating /home/eia/ros2_mujoco_integration/install/amr_reactive_control/share/amr_reactive_control/descriptions
+[1.350s] creating /home/eia/ros2_mujoco_integration/install/amr_reactive_control/share/amr_reactive_control/config
+[1.372s] Invoked command in '/home/eia/ros2_mujoco_integration/build/amr_reactive_control' returned '0': PYTHONPATH=/home/eia/ros2_mujoco_integration/build/amr_reactive_control/prefix_override:/home/eia/.local/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/eia/ros2_mujoco_integration/install/amr_reactive_control/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/eia/ros2_mujoco_integration/build/amr_reactive_control/build --no-deps symlink_data

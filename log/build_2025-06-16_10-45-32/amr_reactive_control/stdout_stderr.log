@@ -1,0 +1,29 @@
+running develop
+running egg_info
+creating amr_reactive_control.egg-info
+writing amr_reactive_control.egg-info/PKG-INFO
+writing dependency_links to amr_reactive_control.egg-info/dependency_links.txt
+writing entry points to amr_reactive_control.egg-info/entry_points.txt
+writing requirements to amr_reactive_control.egg-info/requires.txt
+writing top-level names to amr_reactive_control.egg-info/top_level.txt
+writing manifest file 'amr_reactive_control.egg-info/SOURCES.txt'
+reading manifest file 'amr_reactive_control.egg-info/SOURCES.txt'
+writing manifest file 'amr_reactive_control.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/eia/ros2_mujoco_integration/install/amr_reactive_control/lib/python3.10/site-packages/amr-reactive-control.egg-link (link to .)
+Installing gap_follower_control script to /home/eia/ros2_mujoco_integration/install/amr_reactive_control/lib/amr_reactive_control
+Installing wall_follower_control script to /home/eia/ros2_mujoco_integration/install/amr_reactive_control/lib/amr_reactive_control
+Installing wall_follower_parameters script to /home/eia/ros2_mujoco_integration/install/amr_reactive_control/lib/amr_reactive_control
+
+Installed /home/eia/ros2_mujoco_integration/build/amr_reactive_control
+running symlink_data
+creating /home/eia/ros2_mujoco_integration/install/amr_reactive_control/share/ament_index
+creating /home/eia/ros2_mujoco_integration/install/amr_reactive_control/share/ament_index/resource_index
+creating /home/eia/ros2_mujoco_integration/install/amr_reactive_control/share/ament_index/resource_index/packages
+symbolically linking /home/eia/ros2_mujoco_integration/build/amr_reactive_control/resource/amr_reactive_control -> /home/eia/ros2_mujoco_integration/install/amr_reactive_control/share/ament_index/resource_index/packages
+symbolically linking /home/eia/ros2_mujoco_integration/build/amr_reactive_control/package.xml -> /home/eia/ros2_mujoco_integration/install/amr_reactive_control/share/amr_reactive_control
+creating /home/eia/ros2_mujoco_integration/install/amr_reactive_control/share/amr_reactive_control/launch
+symbolically linking /home/eia/ros2_mujoco_integration/build/amr_reactive_control/launch/amr_wall_follower_control.launch.py -> /home/eia/ros2_mujoco_integration/install/amr_reactive_control/share/amr_reactive_control/launch
+symbolically linking /home/eia/ros2_mujoco_integration/build/amr_reactive_control/launch/amr_gap_follower_control.launch.py -> /home/eia/ros2_mujoco_integration/install/amr_reactive_control/share/amr_reactive_control/launch
+creating /home/eia/ros2_mujoco_integration/install/amr_reactive_control/share/amr_reactive_control/descriptions
+creating /home/eia/ros2_mujoco_integration/install/amr_reactive_control/share/amr_reactive_control/config
